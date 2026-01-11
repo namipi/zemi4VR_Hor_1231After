@@ -221,7 +221,7 @@ public class PlayerTracker : MonoBehaviour
             float headZ = float.Parse(headPosValues[2]);
 
             // Y座標は0に固定
-            Vector3 localPos = new Vector3(headX, 0f, headZ);
+            Vector3 localPos = new Vector3(-headX, 0f, headZ);
 
             // 回転データを@で分割（head, leftHand, rightHand）
             string[] rotations = rotationData.Split('@');
