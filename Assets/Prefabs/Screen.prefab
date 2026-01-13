@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8022384660671950131}
   - component: {fileID: 2955619591051564401}
   - component: {fileID: 117381864358280797}
+  - component: {fileID: -2856660139096589812}
   m_Layer: 0
   m_Name: Screen
   m_TagString: Untagged
@@ -121,3 +122,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4479376938ceffa43b598a1098071bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2856660139096589812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495595424356940587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d7d4b863cf2e743af991bd862f60bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObjectName: OTHER
+  delay: 0.5

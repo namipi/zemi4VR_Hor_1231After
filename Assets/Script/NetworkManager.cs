@@ -2,6 +2,7 @@ using UnityEngine;
 using OscJack;
 using System.Net;
 using System.Net.Sockets;
+using System.Collections;
 
 /// <summary>
 /// OSC通信を統合管理するシングルトン
@@ -16,8 +17,14 @@ public class NetworkManager : MonoBehaviour
     [Header("参照（自動取得可）")]
     [SerializeField] private PlayerTracker playerTracker;
 
+    [Header("デバッグ")]
+    [SerializeField] private bool enableTestSend = true;
+
     // 内部状態
     private OscClient _client;
+    private Coroutine _testCoroutine;
+
+    private string _currentTargetIP;
     private string _devicePath;
     private float _lastSendTime;
 
@@ -41,13 +48,59 @@ public class NetworkManager : MonoBehaviour
         _lastSendTime = Time.time;
     }
 
+    void Start()
+    {
+
+    }
+
     void OnDestroy()
     {
+        if (_testCoroutine != null)
+        {
+            StopCoroutine(_testCoroutine);
+        }
         _client?.Dispose();
         if (Instance == this) Instance = null;
     }
 
-    private void InitializeNetwork()
+    /// <summary>
+    /// 1秒ごとにテストUDPを送信するコルーチン
+    /// </summary>
+    private IEnumerator TestSendCoroutine()
+    {
+        int count = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            count++;
+
+            // クライアント情報をログ出力
+            Debug.Log($"[UDP TEST #{count}] Client: {(_client != null ? "OK" : "NULL")}, " +
+                      $"TargetIP: {_currentTargetIP ?? config?.TargetIP ?? "N/A"}, " +
+                      $"Port: {config?.SendPort ?? 0}, " +
+                      $"Time: {Time.time:F2}");
+
+            // テスト送信
+            if (_client != null)
+            {
+                try
+                {
+                    _client.Send("/test/ping", count);
+                    Debug.Log($"[UDP TEST #{count}] Send SUCCESS");
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError($"[UDP TEST #{count}] Send FAILED: {e.Message}");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"[UDP TEST #{count}] Cannot send - client is null!");
+            }
+        }
+    }
+
+    public void InitializeNetwork()
     {
         // デバイスIP取得
         var host = Dns.GetHostEntry(Dns.GetHostName());
@@ -55,8 +108,12 @@ public class NetworkManager : MonoBehaviour
         {
             if (ip.AddressFamily == AddressFamily.InterNetwork)
             {
-                _devicePath = "/" + ip;
-                break;
+                string ipString = ip.ToString();
+                if (ipString.StartsWith("192.168"))
+                {
+                    _devicePath = "/" + ipString;
+                    break;
+                }
             }
         }
 
@@ -85,6 +142,7 @@ public class NetworkManager : MonoBehaviour
             $"{data.rightHandRot.x:F4}#{data.rightHandRot.y:F4}#{data.rightHandRot.z:F4}#{data.rightHandRot.w:F4}";
 
         // 位置と回転を%で結合して送信
+        Debug.Log(_currentTargetIP);
         _client.Send("/VRnotrame/transform", $"{position}%{rotation}");
     }
 
@@ -93,8 +151,16 @@ public class NetworkManager : MonoBehaviour
     /// </summary>
     public void SetTarget(string ip)
     {
-        Debug.Log("SetTarget: " + ip);
+        // IPが変わっていない場合は何もしない
+        if (_currentTargetIP == ip)
+        {
+            return;
+        }
+
+        Debug.Log($"[NetworkManager] SetTarget: {ip}");
+
         _client?.Dispose();
         _client = new OscClient(ip, config.SendPort);
+        _currentTargetIP = ip;
     }
 }
