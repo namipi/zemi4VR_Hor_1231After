@@ -11904,6 +11904,58 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - address: /setting/ScSendOn
+    type: 3
+    onReceivedFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedInt:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedString:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedTrigger:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1720954141}
+          m_TargetAssemblyTypeName: NetworkManager, Assembly-CSharp
+          m_MethodName: SetSendEnabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - address: /setting/ScSendOff
+    type: 3
+    onReceivedFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedInt:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedString:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedTrigger:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1720954141}
+          m_TargetAssemblyTypeName: NetworkManager, Assembly-CSharp
+          m_MethodName: SetSendEnabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1362735542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15808,6 +15860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 5fe85687a1e41cb48b83d620cd1a9665, type: 2}
   playerTracker: {fileID: 1108134168}
+  sendEnabled: 1
   enableTestSend: 1
 --- !u!4 &1720954142
 Transform:

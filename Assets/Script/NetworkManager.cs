@@ -17,6 +17,10 @@ public class NetworkManager : MonoBehaviour
     [Header("参照（自動取得可）")]
     [SerializeField] private PlayerTracker playerTracker;
 
+    [Header("送信制御")]
+    [Tooltip("送信を有効にするかどうか")]
+    public bool sendEnabled = true;
+
     [Header("デバッグ")]
     [SerializeField] private bool enableTestSend = true;
 
@@ -42,6 +46,7 @@ public class NetworkManager : MonoBehaviour
     void Update()
     {
         if (_client == null || playerTracker == null) return;
+        if (!sendEnabled) return;
         if (Time.time - _lastSendTime < config.SendInterval) return;
 
         SendPlayerData();
@@ -52,6 +57,28 @@ public class NetworkManager : MonoBehaviour
     {
 
     }
+
+    public void EnableSend()
+    {
+        sendEnabled = true;
+    }
+
+    /// <summary>
+    /// 送信を無効にする
+    /// </summary>
+    public void DisableSend()
+    {
+        sendEnabled = false;
+    }
+
+    /// <summary>
+    /// 送信の有効/無効を設定
+    /// </summary>
+    public void SetSendEnabled(bool enabled)
+    {
+        sendEnabled = enabled;
+    }
+
 
     void OnDestroy()
     {

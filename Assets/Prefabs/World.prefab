@@ -7968,6 +7968,7 @@ GameObject:
   - component: {fileID: 8805086303441884187}
   - component: {fileID: 6145086991395957369}
   - component: {fileID: 1608718076017343010}
+  - component: {fileID: 816621802087775735}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -8186,6 +8187,58 @@ MonoBehaviour:
     onReceivedTrigger:
       m_PersistentCalls:
         m_Calls: []
+  - address: /setting/OtSendOn
+    type: 3
+    onReceivedFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedInt:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedString:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedTrigger:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 816621802087775735}
+          m_TargetAssemblyTypeName: SendEmergency, Assembly-CSharp
+          m_MethodName: SetAutoSendEnabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - address: /setting/OtSendOff
+    type: 3
+    onReceivedFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedInt:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedString:
+      m_PersistentCalls:
+        m_Calls: []
+    onReceivedTrigger:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 816621802087775735}
+          m_TargetAssemblyTypeName: SendEmergency, Assembly-CSharp
+          m_MethodName: SetAutoSendEnabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &3239578872353952873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8407,6 +8460,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardTarget: {fileID: 0}
   searchObjectName: PLANT
+--- !u!114 &816621802087775735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678715843249045866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4687994542e15a94cbed94b016475f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 0}
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 0}
+  headName: CenterEyeAnchor
+  leftHandName: LeftHandAnchor
+  rightHandName: RightHandAnchor
+  oscAddress: /emergencynotRame/transform
+  positionScale: 2
+  autoSend: 0
+  sendInterval: 0.5
 --- !u!1 &5746643468778081880
 GameObject:
   m_ObjectHideFlags: 0
