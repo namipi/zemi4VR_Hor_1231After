@@ -86,9 +86,69 @@ public class NetworkManager : MonoBehaviour
         if (Instance == this) Instance = null;
     }
 
+    /// <summary>
+    /// アプリがフォーカスを取得/失った時に呼ばれる
+    /// スリープ復帰時の再接続に使用
+    /// </summary>
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus)
+        {
+            Debug.Log("[NetworkManager] Application gained focus - reinitializing network...");
+            ReinitializeNetwork();
+        }
+    }
+
+    /// <summary>
+    /// アプリが一時停止/再開した時に呼ばれる
+    /// スリープ復帰時の再接続に使用
+    /// </summary>
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (!pauseStatus)
+        {
+            Debug.Log("[NetworkManager] Application resumed from pause - reinitializing network...");
+            ReinitializeNetwork();
+        }
+    }
+
+    /// <summary>
+    /// ネットワークを再初期化する
+    /// </summary>
+    public void ReinitializeNetwork()
+    {
+        // 既存のクライアントを破棄
+        _client?.Dispose();
+        _client = null;
+
+        // 少し遅延してから再初期化（ネットワークインターフェースの復帰を待つ）
+        StartCoroutine(DelayedNetworkInit());
+    }
+
+    private IEnumerator DelayedNetworkInit()
+    {
+        // ネットワークインターフェースの復帰を待つ
+        yield return new WaitForSeconds(0.5f);
+
+        InitializeNetwork();
+
+        // 以前のターゲットIPがあれば再設定
+        if (!string.IsNullOrEmpty(_currentTargetIP))
+        {
+            string savedIP = _currentTargetIP;
+            _currentTargetIP = null; // SetTargetが動作するようにリセット
+            SetTarget(savedIP);
+        }
+
+        Debug.Log("[NetworkManager] Network reinitialized successfully");
+    }
+
+    // 固定送信先IP
+    private const string FIXED_TARGET_IP = "192.168.181.204";
+
     public void InitializeNetwork()
     {
-        // デバイスIP取得
+        // デバイスIP取得（自身のパス用）
         var host = Dns.GetHostEntry(Dns.GetHostName());
         foreach (var ip in host.AddressList)
         {
@@ -103,8 +163,10 @@ public class NetworkManager : MonoBehaviour
             }
         }
 
-        // OSCクライアント初期化
-        _client = new OscClient(config.TargetIP, config.SendPort);
+        // OSCクライアント初期化（固定IPに送信）
+        _client = new OscClient(FIXED_TARGET_IP, config.SendPort);
+        _currentTargetIP = FIXED_TARGET_IP;
+        Debug.Log($"[NetworkManager] Initialized with fixed target IP: {FIXED_TARGET_IP}");
 
         // ブロードキャストで自身を通知
         using var broadcast = new OscClient("255.255.255.255", config.SendPort);
