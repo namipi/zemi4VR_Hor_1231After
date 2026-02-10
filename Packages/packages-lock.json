@@ -179,7 +179,7 @@
     },
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.2.1",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -307,6 +307,15 @@
         "com.unity.xr.management": "4.4.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "io.github.hatayama.uloopmcp": {
+      "version": "https://github.com/hatayama/uLoopMCP.git?path=/Packages/src",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+      },
+      "hash": "ce526e530130da64311afd2416aaf8d03668baaa"
     },
     "jp.keijiro.osc-jack": {
       "version": "2.0.0",

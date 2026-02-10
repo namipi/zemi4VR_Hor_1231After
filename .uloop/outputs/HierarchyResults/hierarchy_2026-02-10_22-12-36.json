@@ -1,0 +1,1470 @@
+{
+  "ExportTimestamp": "2026-02-10 22:12:36",
+  "Context": {
+    "sceneType": "editor",
+    "sceneName": "SampleScene",
+    "nodeCount": 103,
+    "maxDepth": 3
+  },
+  "Hierarchy": [
+    {
+      "sceneName": "SampleScene",
+      "stats": {
+        "rootCount": 11,
+        "nodeCount": 103,
+        "maxDepth": 3
+      },
+      "componentsLut": [
+        "Transform",
+        "Camera",
+        "AudioListener",
+        "BuildingBlock",
+        "OVRCameraRig",
+        "OVRManager",
+        "OVRHeadsetEmulator",
+        "SpriteRenderer",
+        "konnitiha",
+        "MeshFilter",
+        "MeshRenderer",
+        "SphereCollider",
+        "Rigidbody",
+        "BoxCollider",
+        "OVRCameraRigRef",
+        "TrackingToWorldTransformerOVR",
+        "Hmd",
+        "FromOVRHmdDataSource",
+        "Hand",
+        "HandSkeletonOVR",
+        "FromOVRHandDataSource",
+        "LastKnownGoodHand",
+        "OVRHand",
+        "Controller",
+        "FromOVRControllerDataSource",
+        "HmdRef",
+        "HandActiveState",
+        "ControllerActiveState",
+        "JointsRadiusFeature",
+        "FingerFeatureStateProvider",
+        "TransformFeatureStateProvider",
+        "BestHoverInteractorGroup",
+        "HoverInteractorsGate",
+        "SyntheticHand",
+        "SyntheticControllerInHand",
+        "ActiveStateUnityEventWrapper",
+        "LocomotionEventsConnection",
+        "ActiveStateGroup",
+        "InteractorActiveState",
+        "HandVisual",
+        "Animator",
+        "ControllerVisual",
+        "OVRControllerHelper",
+        "ControllerRef",
+        "CapsuleCollider",
+        "FirstPersonLocomotor",
+        "HmdOffset",
+        "TeleportInteractor",
+        "TransformsPolyline",
+        "LocomotionEventSelector",
+        "TagSetFilter",
+        "TunnelingEffect",
+        "LocomotionTunneling",
+        "WallPenetrationTunneling",
+        "OVRPassthroughLayer",
+        "Grabbable",
+        "HandGrabInteractable",
+        "GrabInteractable",
+        "PokeInteractable",
+        "PlaneSurface",
+        "ClippedPlaneSurface",
+        "BoundsClipper",
+        "PokeInteractableVisual",
+        "MaterialPropertyBlockEditor",
+        "RoundedBoxProperties",
+        "InteractableColorVisual",
+        "MRUK",
+        "AnchorPrefabSpawner",
+        "SendOSC",
+        "SimpleOscReceiver",
+        "ToggleObjectWithAButton",
+        "ResetLoadScene",
+        "TripleTapOSCSender",
+        "NetworkManager",
+        "PlayerTracker",
+        "HapticsPlayer",
+        "Koshi",
+        "DieOnPlayerContact",
+        "InteractableUnityEventWrapper",
+        "TriggerRaycastEffect"
+      ],
+      "roots": [
+        {
+          "name": "Main Camera",
+          "isActive": true,
+          "componentsIdx": [
+            0,
+            1,
+            2
+          ],
+          "siblingIndex": 0,
+          "tag": "MainCamera",
+          "layer": 0,
+          "children": []
+        },
+        {
+          "name": "[BuildingBlock] Camera Rig",
+          "isActive": true,
+          "componentsIdx": [
+            0,
+            3,
+            4,
+            5,
+            6
+          ],
+          "siblingIndex": 1,
+          "tag": "Untagged",
+          "layer": 0,
+          "children": [
+            {
+              "name": "TrackingSpace",
+              "isActive": true,
+              "componentsIdx": [
+                0
+              ],
+              "siblingIndex": 0,
+              "tag": "Untagged",
+              "layer": 0,
+              "children": [
+                {
+                  "name": "LeftEyeAnchor",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    1
+                  ],
+                  "siblingIndex": 0,
+                  "tag": "MainCamera",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "CenterEyeAnchor",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    2,
+                    1
+                  ],
+                  "siblingIndex": 1,
+                  "tag": "MainCamera",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "AisatuPanel",
+                      "isActive": false,
+                      "componentsIdx": [
+                        0,
+                        7,
+                        8
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "Sphere",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        9,
+                        10,
+                        11,
+                        12
+                      ],
+                      "siblingIndex": 1,
+                      "tag": "Player",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "daruma",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        9,
+                        10,
+                        13,
+                        12
+                      ],
+                      "siblingIndex": 2,
+                      "tag": "Daruma",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "RightEyeAnchor",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    1
+                  ],
+                  "siblingIndex": 2,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "TrackerAnchor",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0
+                  ],
+                  "siblingIndex": 3,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "LeftHandAnchor",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0
+                  ],
+                  "siblingIndex": 4,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "LeftControllerAnchor",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "LeftControllerInHandAnchor",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0
+                      ],
+                      "siblingIndex": 1,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "RightHandAnchor",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0
+                  ],
+                  "siblingIndex": 5,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "RightControllerAnchor",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "RightControllerInHandAnchor",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0
+                      ],
+                      "siblingIndex": 1,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "LeftHandAnchorDetached",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0
+                  ],
+                  "siblingIndex": 6,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "RightHandAnchorDetached",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0
+                  ],
+                  "siblingIndex": 7,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "[BuildingBlock] OVRInteractionComprehensive",
+              "isActive": true,
+              "componentsIdx": [
+                0,
+                3,
+                14,
+                15
+              ],
+              "siblingIndex": 1,
+              "tag": "Untagged",
+              "layer": 0,
+              "children": [
+                {
+                  "name": "OVRHmd",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    16
+                  ],
+                  "siblingIndex": 0,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "OVRHmdDataSource",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        17
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "OVRHands",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    18,
+                    18,
+                    19
+                  ],
+                  "siblingIndex": 1,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "OVRLeftHandDataSource",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        20,
+                        21,
+                        22
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "OVRRightHandDataSource",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        20,
+                        21,
+                        22
+                      ],
+                      "siblingIndex": 1,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "OVRControllers",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    23,
+                    23
+                  ],
+                  "siblingIndex": 2,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "OVRLeftControllerDataSource",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        24
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "OVRRightControllerDataSource",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        24
+                      ],
+                      "siblingIndex": 1,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "LeftInteractions",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    25,
+                    18,
+                    23,
+                    26,
+                    27
+                  ],
+                  "siblingIndex": 3,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "Features",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        28,
+                        29,
+                        30
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "Interactors",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        31,
+                        32
+                      ],
+                      "siblingIndex": 1,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "SyntheticHandData",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        33,
+                        33,
+                        33
+                      ],
+                      "siblingIndex": 2,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "SyntheticControllerData",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        34,
+                        35
+                      ],
+                      "siblingIndex": 3,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "LocomotionOutput",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        36
+                      ],
+                      "siblingIndex": 4,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "ControllerInHandVisibilityActiveState",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        37,
+                        38,
+                        38,
+                        38
+                      ],
+                      "siblingIndex": 5,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "RightInteractions",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    25,
+                    18,
+                    23,
+                    26,
+                    27
+                  ],
+                  "siblingIndex": 4,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "Features",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        28,
+                        29,
+                        30
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "Interactors",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        31,
+                        32
+                      ],
+                      "siblingIndex": 1,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "SyntheticHandData",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        33,
+                        33,
+                        33
+                      ],
+                      "siblingIndex": 2,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "SyntheticControllerData",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        34,
+                        35
+                      ],
+                      "siblingIndex": 3,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "LocomotionOutput",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        36
+                      ],
+                      "siblingIndex": 4,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "ControllerInHandVisibilityActiveState",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        37,
+                        38,
+                        38,
+                        38
+                      ],
+                      "siblingIndex": 5,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "OVRLeftHandVisual",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    39
+                  ],
+                  "siblingIndex": 5,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "OpenXRLeftHand",
+                      "isActive": false,
+                      "componentsIdx": [
+                        0
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "OculusHand_L",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        40
+                      ],
+                      "siblingIndex": 1,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "OVRRightHandVisual",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    39
+                  ],
+                  "siblingIndex": 6,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "OpenXRRightHand",
+                      "isActive": false,
+                      "componentsIdx": [
+                        0
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "OculusHand_R",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        40
+                      ],
+                      "siblingIndex": 1,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "OVRLeftControllerVisual",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    41,
+                    35
+                  ],
+                  "siblingIndex": 7,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "OVRControllerPrefab",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        42,
+                        11,
+                        12
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Hand",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "OVRRightControllerVisual",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    41,
+                    35
+                  ],
+                  "siblingIndex": 8,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "OVRControllerPrefab",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        42,
+                        11,
+                        12
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Hand",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "Locomotor",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    25,
+                    43,
+                    43,
+                    36
+                  ],
+                  "siblingIndex": 9,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "PlayerController",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        12,
+                        44,
+                        45
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Player",
+                      "layer": 4,
+                      "children": []
+                    },
+                    {
+                      "name": "HeadCenter",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        46
+                      ],
+                      "siblingIndex": 1,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "CharacterHead",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0
+                      ],
+                      "siblingIndex": 2,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "CharacterFeet",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0
+                      ],
+                      "siblingIndex": 3,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "BodyTeleportInteractor",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        47,
+                        48,
+                        49,
+                        36,
+                        50
+                      ],
+                      "siblingIndex": 4,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "SmoothMovementTunneling",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        51,
+                        52
+                      ],
+                      "siblingIndex": 5,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    },
+                    {
+                      "name": "WallPenetrationTunneling",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        51,
+                        53
+                      ],
+                      "siblingIndex": 6,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "[BuildingBlock] Passthrough",
+          "isActive": true,
+          "componentsIdx": [
+            0,
+            3,
+            54
+          ],
+          "siblingIndex": 2,
+          "tag": "Untagged",
+          "layer": 0,
+          "children": []
+        },
+        {
+          "name": "[BuildingBlock] Cube",
+          "isActive": true,
+          "componentsIdx": [
+            0,
+            3,
+            9,
+            10,
+            13,
+            12,
+            55
+          ],
+          "siblingIndex": 3,
+          "tag": "Untagged",
+          "layer": 0,
+          "children": [
+            {
+              "name": "[BuildingBlock] HandGrabInstallationRoutine",
+              "isActive": true,
+              "componentsIdx": [
+                0,
+                3,
+                56,
+                57
+              ],
+              "siblingIndex": 0,
+              "tag": "Untagged",
+              "layer": 0,
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Poke Interaction",
+          "isActive": true,
+          "componentsIdx": [
+            0
+          ],
+          "siblingIndex": 4,
+          "tag": "Untagged",
+          "layer": 0,
+          "children": [
+            {
+              "name": "[BuildingBlock] ISDK_PokeInteraction",
+              "isActive": true,
+              "componentsIdx": [
+                0,
+                3,
+                58
+              ],
+              "siblingIndex": 0,
+              "tag": "Untagged",
+              "layer": 0,
+              "children": [
+                {
+                  "name": "Model",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0
+                  ],
+                  "siblingIndex": 0,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "Surface",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        59,
+                        60,
+                        61
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "Visuals",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0
+                  ],
+                  "siblingIndex": 1,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": [
+                    {
+                      "name": "ButtonVisual",
+                      "isActive": true,
+                      "componentsIdx": [
+                        0,
+                        62,
+                        9,
+                        10,
+                        63,
+                        64,
+                        65
+                      ],
+                      "siblingIndex": 0,
+                      "tag": "Untagged",
+                      "layer": 0,
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "[BuildingBlock] MR Utility Kit",
+          "isActive": true,
+          "componentsIdx": [
+            0,
+            3,
+            66
+          ],
+          "siblingIndex": 5,
+          "tag": "Untagged",
+          "layer": 0,
+          "children": []
+        },
+        {
+          "name": "[BuildingBlock] RoomModel",
+          "isActive": true,
+          "componentsIdx": [
+            0,
+            3,
+            67
+          ],
+          "siblingIndex": 6,
+          "tag": "Untagged",
+          "layer": 0,
+          "children": []
+        },
+        {
+          "name": "Master",
+          "isActive": true,
+          "componentsIdx": [
+            0,
+            68,
+            69,
+            70,
+            71,
+            72
+          ],
+          "siblingIndex": 7,
+          "tag": "Untagged",
+          "layer": 0,
+          "children": []
+        },
+        {
+          "name": "NetworkManager",
+          "isActive": true,
+          "componentsIdx": [
+            0,
+            73
+          ],
+          "siblingIndex": 8,
+          "tag": "Untagged",
+          "layer": 0,
+          "children": []
+        },
+        {
+          "name": "PlayerTracker",
+          "isActive": true,
+          "componentsIdx": [
+            0,
+            74,
+            75
+          ],
+          "siblingIndex": 9,
+          "tag": "Untagged",
+          "layer": 0,
+          "children": []
+        },
+        {
+          "name": "GameObject",
+          "isActive": true,
+          "componentsIdx": [
+            0,
+            76
+          ],
+          "siblingIndex": 10,
+          "tag": "Untagged",
+          "layer": 0,
+          "children": [
+            {
+              "name": "Knife",
+              "isActive": true,
+              "componentsIdx": [
+                0,
+                12,
+                55,
+                13,
+                77,
+                78
+              ],
+              "siblingIndex": 0,
+              "tag": "Knife",
+              "layer": 0,
+              "children": [
+                {
+                  "name": "Object",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 0,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Knife",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10,
+                    12,
+                    13
+                  ],
+                  "siblingIndex": 1,
+                  "tag": "Knife",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Object004",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 2,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Object006",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 3,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Object008",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 4,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "[BuildingBlock] HandGrabInstallationRoutine",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    3,
+                    56,
+                    57
+                  ],
+                  "siblingIndex": 5,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "GLOCK19",
+              "isActive": true,
+              "componentsIdx": [
+                0,
+                12,
+                55,
+                13,
+                78
+              ],
+              "siblingIndex": 1,
+              "tag": "Untagged",
+              "layer": 0,
+              "children": [
+                {
+                  "name": "b_low",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 0,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "b_low.001",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 1,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Cube",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 2,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Cube.003",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 3,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Cube.006",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 4,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Cube.007",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 5,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Cube.009",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 6,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Cube.014",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 7,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Cube.015",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 8,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Cube.017",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 9,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Cylinder",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 10,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Cylinder.001",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 11,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "g2_low",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 12,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "g_low",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 13,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "m_low",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 14,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Plane",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 15,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Plane.001",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 16,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Plane.002",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 17,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Plane.003",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    9,
+                    10
+                  ],
+                  "siblingIndex": 18,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "[BuildingBlock] HandGrabInstallationRoutine",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    3,
+                    56,
+                    57
+                  ],
+                  "siblingIndex": 19,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                },
+                {
+                  "name": "Muzzle",
+                  "isActive": true,
+                  "componentsIdx": [
+                    0,
+                    79
+                  ],
+                  "siblingIndex": 20,
+                  "tag": "Untagged",
+                  "layer": 0,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

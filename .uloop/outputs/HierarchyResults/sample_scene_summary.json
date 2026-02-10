@@ -1,0 +1,163 @@
+{
+  "exportTimestamp": "2026-02-10 21:04:58",
+  "stats": {
+    "rootCount": 11,
+    "nodeCount": 707,
+    "maxDepth": 6
+  },
+  "rootSummaries": [
+    {
+      "path": "Main Camera",
+      "active": true,
+      "components": [
+        "Transform",
+        "Camera",
+        "AudioListener"
+      ],
+      "childCount": 0
+    },
+    {
+      "path": "[BuildingBlock] Camera Rig",
+      "active": true,
+      "components": [
+        "Transform",
+        "BuildingBlock",
+        "OVRCameraRig",
+        "OVRManager",
+        "OVRHeadsetEmulator"
+      ],
+      "childCount": 2
+    },
+    {
+      "path": "[BuildingBlock] Passthrough",
+      "active": true,
+      "components": [
+        "Transform",
+        "BuildingBlock",
+        "OVRPassthroughLayer"
+      ],
+      "childCount": 0
+    },
+    {
+      "path": "[BuildingBlock] Cube",
+      "active": true,
+      "components": [
+        "Transform",
+        "BuildingBlock",
+        "MeshFilter",
+        "MeshRenderer",
+        "BoxCollider",
+        "Rigidbody",
+        "Grabbable"
+      ],
+      "childCount": 1
+    },
+    {
+      "path": "Poke Interaction",
+      "active": true,
+      "components": [
+        "Transform"
+      ],
+      "childCount": 1
+    },
+    {
+      "path": "[BuildingBlock] MR Utility Kit",
+      "active": true,
+      "components": [
+        "Transform",
+        "BuildingBlock",
+        "MRUK"
+      ],
+      "childCount": 0
+    },
+    {
+      "path": "[BuildingBlock] RoomModel",
+      "active": true,
+      "components": [
+        "Transform",
+        "BuildingBlock",
+        "AnchorPrefabSpawner"
+      ],
+      "childCount": 0
+    },
+    {
+      "path": "Master",
+      "active": true,
+      "components": [
+        "Transform",
+        "SendOSC",
+        "SimpleOscReceiver",
+        "ToggleObjectWithAButton",
+        "ResetLoadScene",
+        "TripleTapOSCSender"
+      ],
+      "childCount": 0
+    },
+    {
+      "path": "NetworkManager",
+      "active": true,
+      "components": [
+        "Transform",
+        "NetworkManager"
+      ],
+      "childCount": 0
+    },
+    {
+      "path": "PlayerTracker",
+      "active": true,
+      "components": [
+        "Transform",
+        "PlayerTracker",
+        "HapticsPlayer"
+      ],
+      "childCount": 0
+    },
+    {
+      "path": "GameObject",
+      "active": true,
+      "components": [
+        "Transform",
+        "Koshi"
+      ],
+      "childCount": 2
+    }
+  ],
+  "scriptMap": {
+    "DieOnPlayerContact": [
+      "GameObject/Knife"
+    ],
+    "HapticsPlayer": [
+      "PlayerTracker"
+    ],
+    "Koshi": [
+      "GameObject"
+    ],
+    "NetworkManager": [
+      "NetworkManager"
+    ],
+    "PlayerTracker": [
+      "PlayerTracker"
+    ],
+    "ResetLoadScene": [
+      "Master"
+    ],
+    "SendOSC": [
+      "Master"
+    ],
+    "SimpleOscReceiver": [
+      "Master"
+    ],
+    "ToggleObjectWithAButton": [
+      "Master"
+    ],
+    "TriggerRaycastEffect": [
+      "GameObject/GLOCK19/Muzzle"
+    ],
+    "TripleTapOSCSender": [
+      "Master"
+    ],
+    "konnitiha": [
+      "[BuildingBlock] Camera Rig/TrackingSpace/CenterEyeAnchor/AisatuPanel"
+    ]
+  }
+}

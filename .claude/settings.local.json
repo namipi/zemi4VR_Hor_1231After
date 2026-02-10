@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uloop clear-console:*)",
+      "Bash(ls:*)",
+      "Bash(uloop get-hierarchy:*)",
+      "Bash(uloop get-logs:*)"
+    ]
+  }
+}
