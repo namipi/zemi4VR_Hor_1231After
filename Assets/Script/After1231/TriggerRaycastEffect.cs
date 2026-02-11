@@ -13,6 +13,20 @@ public class TriggerRaycastEffect : MonoBehaviour
     [Header("エフェクト設定")]
     [Tooltip("ヒット時に生成するエフェクトPrefab")]
     public GameObject effectPrefab;
+    
+    [Header("Zakoヒット時クローン設定")]
+    [Tooltip("Zakoヒット時に生成するPrefab（未設定なら生成しない）")]
+    public GameObject cloneOnZakoHit;
+
+    [Tooltip("Zakoヒット時クローンのDestroyまでの秒数")]
+    public float cloneDestroyDelay = 2f;
+
+    [Header("Zakoヒット時Emission設定")]
+    [Tooltip("Emissionを赤く光らせるまでの秒数")]
+    public float emissionFadeDuration = 0.5f;
+
+    [Tooltip("Emissionの赤色強度")]
+    public float emissionRedIntensity = 2f;
 
     [Header("Raycast設定")]
     [Tooltip("Raycastの最大距離")]
@@ -112,7 +126,7 @@ public class TriggerRaycastEffect : MonoBehaviour
             // zakoタグなら死亡処理
             if (hit.collider.CompareTag("zako"))
             {
-                HandleZakoHit(hit.collider.gameObject);
+                HandleZakoHit(hit.collider.gameObject, hit.point, rayOrigin.forward);
             }
 
             // Coreという名前ならEmission解除
@@ -133,14 +147,70 @@ public class TriggerRaycastEffect : MonoBehaviour
         }
     }
 
-    private void HandleZakoHit(GameObject zako)
+    private void HandleZakoHit(GameObject zako, Vector3 hitPoint, Vector3 hitForward)
     {
         Animator animator = zako.GetComponent<Animator>();
         if (animator != null)
         {
             animator.SetTrigger("Die");
         }
+
+        if (emissionFadeDuration > 0f)
+        {
+            StartCoroutine(FadeEmissionToRed(zako, emissionFadeDuration, emissionRedIntensity));
+        }
+
+        if (cloneOnZakoHit != null)
+        {
+            Vector3 opposite = -hitForward;
+            Quaternion rotation = opposite.sqrMagnitude > 0f
+                ? Quaternion.LookRotation(opposite.normalized, Vector3.up)
+                : Quaternion.identity;
+            GameObject clone = Instantiate(cloneOnZakoHit, hitPoint, rotation);
+            Destroy(clone, cloneDestroyDelay);
+        }
         Destroy(zako, 2.4f);
         Debug.Log($"[TriggerRaycastEffect] Zako hit: {zako.name} - Die triggered, destroying in 1s");
+    }
+
+    private System.Collections.IEnumerator FadeEmissionToRed(GameObject target, float duration, float intensity)
+    {
+        var renderers = target.GetComponentsInChildren<Renderer>(true);
+        if (renderers == null || renderers.Length == 0) yield break;
+
+        var materials = new System.Collections.Generic.List<Material>();
+        var original = new System.Collections.Generic.List<Color>();
+
+        foreach (var r in renderers)
+        {
+            var mats = r.materials;
+            foreach (var m in mats)
+            {
+                if (m == null) continue;
+                m.EnableKeyword("_EMISSION");
+                materials.Add(m);
+                original.Add(m.GetColor("_EmissionColor"));
+            }
+        }
+
+        if (materials.Count == 0) yield break;
+
+        Color targetColor = Color.red * intensity;
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float k = Mathf.Clamp01(t / duration);
+            for (int i = 0; i < materials.Count; i++)
+            {
+                materials[i].SetColor("_EmissionColor", Color.LerpUnclamped(original[i], targetColor, k));
+            }
+            yield return null;
+        }
+
+        for (int i = 0; i < materials.Count; i++)
+        {
+            materials[i].SetColor("_EmissionColor", targetColor);
+        }
     }
 }

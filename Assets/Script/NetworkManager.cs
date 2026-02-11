@@ -1,43 +1,61 @@
 using UnityEngine;
 using OscJack;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Collections;
+using System.Globalization;
+using System.IO;
+using System.Text;
 
 /// <summary>
-/// OSC通信を統合管理するシングルトン（固定IPモード）
+/// OSC communication manager singleton.
 /// </summary>
 public class NetworkManager : MonoBehaviour
 {
     public static NetworkManager Instance { get; private set; }
 
-    [Header("設定")]
+    [Header("Settings")]
     [SerializeField] private NetworkConfig config;
+    [SerializeField] private bool useExternalTextConfig = true;
+    [SerializeField] private string externalConfigFileName = "NetworkConfig.txt";
 
-    [Header("参照（自動取得可）")]
+    [Header("References")]
     [SerializeField] private PlayerTracker playerTracker;
 
-    [Header("送信制御")]
-    [Tooltip("送信を有効にするかどうか")]
+    [Header("Send Control")]
+    [Tooltip("Enable or disable OSC send")]
     public bool sendEnabled = true;
 
-    [Header("デバッグ")]
+    [Header("Debug")]
     [SerializeField] private bool enableDebugLog = false;
 
-    // 内部状態
     private OscClient _client;
     private string _devicePath;
     private float _lastSendTime;
+    private string _targetIP;
+    private int _sendPort;
+    private float _sendInterval;
 
-    // プロパティ
+    private const string DefaultTargetIP = "127.0.0.1";
+    private const int DefaultSendPort = 17200;
+    private const float DefaultSendInterval = 0.033f;
+
     public OscClient Client => _client;
     public string DevicePath => _devicePath;
-    public string TargetIP => config.TargetIP;
+    public string TargetIP => _targetIP;
 
     void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        EnsureExternalConfigFileExists();
+        ResolveRuntimeConfig();
         InitializeNetwork();
     }
 
@@ -45,7 +63,7 @@ public class NetworkManager : MonoBehaviour
     {
         if (_client == null || playerTracker == null) return;
         if (!sendEnabled) return;
-        if (Time.time - _lastSendTime < config.SendInterval) return;
+        if (Time.time - _lastSendTime < _sendInterval) return;
 
         SendPlayerData();
         _lastSendTime = Time.time;
@@ -57,7 +75,7 @@ public class NetworkManager : MonoBehaviour
         if (Instance == this) Instance = null;
     }
 
-    #region 送信制御
+    #region Send Control
 
     public void EnableSend() => sendEnabled = true;
     public void DisableSend() => sendEnabled = false;
@@ -65,7 +83,7 @@ public class NetworkManager : MonoBehaviour
 
     #endregion
 
-    #region ネットワーク初期化
+    #region Network Init
 
     void OnApplicationFocus(bool hasFocus)
     {
@@ -93,7 +111,9 @@ public class NetworkManager : MonoBehaviour
 
     public void InitializeNetwork()
     {
-        // デバイスIP取得（自身のパス用）
+        EnsureExternalConfigFileExists();
+        ResolveRuntimeConfig();
+
         var host = Dns.GetHostEntry(Dns.GetHostName());
         foreach (var ip in host.AddressList)
         {
@@ -108,18 +128,171 @@ public class NetworkManager : MonoBehaviour
             }
         }
 
-        // OSCクライアント初期化
-        _client = new OscClient(config.TargetIP, config.SendPort);
-        Debug.Log($"[NetworkManager] Initialized - Target: {config.TargetIP}");
+        _client = new OscClient(_targetIP, _sendPort);
+        Debug.Log($"[NetworkManager] Initialized - Target: {_targetIP}:{_sendPort}");
 
-        // ブロードキャストで自身を通知
-        using var broadcast = new OscClient("255.255.255.255", config.SendPort);
+        using var broadcast = new OscClient("255.255.255.255", _sendPort);
         broadcast.Send("/setAddress/VRnotrame", _devicePath?.TrimStart('/') ?? "unknown");
+    }
+
+    private void ResolveRuntimeConfig()
+    {
+        _targetIP = config != null ? config.TargetIP : DefaultTargetIP;
+        _sendPort = config != null ? config.SendPort : DefaultSendPort;
+        _sendInterval = config != null ? config.SendInterval : DefaultSendInterval;
+
+        if (!useExternalTextConfig) return;
+
+        string configPath = GetExistingExternalConfigPath();
+        if (string.IsNullOrEmpty(configPath)) return;
+
+        bool targetResolved = false;
+
+        try
+        {
+            foreach (var rawLine in File.ReadAllLines(configPath))
+            {
+                if (string.IsNullOrWhiteSpace(rawLine)) continue;
+
+                string line = rawLine.Trim();
+                if (line.StartsWith("#")) continue;
+
+                if (TryParseKeyValue(line, out string key, out string value))
+                {
+                    if (!targetResolved && (key == "target_ip" || key == "targetip"))
+                    {
+                        if (TryParseIPv4(value, out string ip))
+                        {
+                            _targetIP = ip;
+                            targetResolved = true;
+                        }
+                        continue;
+                    }
+
+                    if (key == "send_port" || key == "sendport")
+                    {
+                        if (int.TryParse(value, out int port) && port > 0 && port <= 65535)
+                        {
+                            _sendPort = port;
+                        }
+                        continue;
+                    }
+
+                    if (key == "send_interval" || key == "sendinterval")
+                    {
+                        if (float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float interval) && interval > 0f)
+                        {
+                            _sendInterval = interval;
+                        }
+                        continue;
+                    }
+                }
+
+                if (!targetResolved && TryParseIPv4(line, out string plainIp))
+                {
+                    _targetIP = plainIp;
+                    targetResolved = true;
+                }
+            }
+
+            if (enableDebugLog) Debug.Log($"[NetworkManager] Loaded external config: {configPath}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogWarning($"[NetworkManager] Failed to read external config ({configPath}): {ex.Message}");
+        }
+    }
+
+    private static bool TryParseKeyValue(string line, out string key, out string value)
+    {
+        key = null;
+        value = null;
+
+        int idx = line.IndexOf('=');
+        if (idx <= 0 || idx >= line.Length - 1) return false;
+
+        key = line.Substring(0, idx).Trim().ToLowerInvariant();
+        value = line.Substring(idx + 1).Trim();
+        return true;
+    }
+
+    private static bool TryParseIPv4(string input, out string ipv4)
+    {
+        ipv4 = null;
+        if (!IPAddress.TryParse(input, out IPAddress parsed)) return false;
+        if (parsed.AddressFamily != AddressFamily.InterNetwork) return false;
+
+        ipv4 = parsed.ToString();
+        return true;
+    }
+
+    private string GetExistingExternalConfigPath()
+    {
+        if (string.IsNullOrWhiteSpace(externalConfigFileName)) return null;
+
+        string rootPath = GetProjectRootConfigPath();
+        string persistentPath = Path.Combine(Application.persistentDataPath, externalConfigFileName);
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+        if (File.Exists(persistentPath)) return persistentPath;
+        if (File.Exists(rootPath)) return rootPath;
+#else
+        if (File.Exists(rootPath)) return rootPath;
+        if (File.Exists(persistentPath)) return persistentPath;
+#endif
+
+        return null;
+    }
+
+    private void EnsureExternalConfigFileExists()
+    {
+        if (!useExternalTextConfig) return;
+        if (string.IsNullOrWhiteSpace(externalConfigFileName)) return;
+
+        string primaryPath = GetPrimaryConfigPathForCurrentPlatform();
+        if (File.Exists(primaryPath)) return;
+
+        string content =
+            "# First valid IP line is used as OSC target\n" +
+            "# You can use either plain IP or key=value format\n" +
+            "# Example: target_ip=192.168.1.10\n" +
+            "192.168.10.115\n";
+
+        try
+        {
+            string dir = Path.GetDirectoryName(primaryPath);
+            if (!string.IsNullOrEmpty(dir)) Directory.CreateDirectory(dir);
+
+            File.WriteAllText(primaryPath, content, new UTF8Encoding(false));
+
+            if (enableDebugLog)
+            {
+                Debug.Log($"[NetworkManager] Generated external config: {primaryPath}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogWarning($"[NetworkManager] Failed to generate external config ({primaryPath}): {ex.Message}");
+        }
+    }
+
+    private string GetPrimaryConfigPathForCurrentPlatform()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        return Path.Combine(Application.persistentDataPath, externalConfigFileName);
+#else
+        return GetProjectRootConfigPath();
+#endif
+    }
+
+    private string GetProjectRootConfigPath()
+    {
+        return Path.GetFullPath(Path.Combine(Application.dataPath, "..", externalConfigFileName));
     }
 
     #endregion
 
-    #region データ送信
+    #region Data Send
 
     private void SendPlayerData()
     {

@@ -1,0 +1,5 @@
+﻿Enabled scenes: Assets/Scenes/SampleScene.unity
+Reachable assets: 157
+Candidates: 483
+Candidate total MB: 1741.89
+Generated: 2026-02-11 11:30:11

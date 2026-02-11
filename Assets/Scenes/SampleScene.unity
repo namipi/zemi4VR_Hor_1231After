@@ -719,6 +719,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1437701783196911908, guid: 23a6b0d5ed75aa349a5e5e7f09358c87, type: 3}
       insertIndex: -1
       addedObject: {fileID: 35335572}
+    - targetCorrespondingSourceObject: {fileID: 1437701783196911908, guid: 23a6b0d5ed75aa349a5e5e7f09358c87, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 35335573}
   m_SourcePrefab: {fileID: 100100000, guid: 23a6b0d5ed75aa349a5e5e7f09358c87, type: 3}
 --- !u!4 &35335567 stripped
 Transform:
@@ -850,6 +853,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 35335573}
+        m_TargetAssemblyTypeName: ReturnToStartLocalPosition, Assembly-CSharp
+        m_MethodName: ReturnToStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _whenInteractorViewAdded:
     m_PersistentCalls:
       m_Calls: []
@@ -862,6 +877,44 @@ MonoBehaviour:
   _whenSelectingInteractorViewRemoved:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &35335573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35335568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72bd9dc3c469f3942998caed12f1558a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultDuration: 0.4
+  easing:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  stopPrevious: 1
 --- !u!1 &54228252
 GameObject:
   m_ObjectHideFlags: 0
@@ -8236,7 +8289,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 5000
+  far clip plane: 119.83
   field of view: 90
   orthographic: 0
   orthographic size: 5
@@ -8611,6 +8664,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4708128508263053809, guid: bbdffead231aad54ea3075da707fc5ef, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1061669037}
+    - targetCorrespondingSourceObject: {fileID: 4708128508263053809, guid: bbdffead231aad54ea3075da707fc5ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1061669038}
   m_SourcePrefab: {fileID: 100100000, guid: bbdffead231aad54ea3075da707fc5ef, type: 3}
 --- !u!4 &1061669032 stripped
 Transform:
@@ -8635,7 +8691,11 @@ MonoBehaviour:
   - Chuboss
   destroyDelay: 2.4
   dieTriggerName: Die
-  sendOSC: {fileID: 0}
+  cloneOnHit: {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
+  cloneDestroyDelay: 2
+  emissionFadeDuration: 1
+  emissionRedIntensity: 0.8
+  sendOSC: {fileID: 1362735538}
   chubossOscAddress: /cue/call/KillChuboss
   isEnabled: 1
 --- !u!114 &1061669037
@@ -8687,6 +8747,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1061669038}
+        m_TargetAssemblyTypeName: ReturnToStartLocalPosition, Assembly-CSharp
+        m_MethodName: ReturnToStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _whenInteractorViewAdded:
     m_PersistentCalls:
       m_Calls: []
@@ -8699,6 +8771,44 @@ MonoBehaviour:
   _whenSelectingInteractorViewRemoved:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1061669038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353588290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72bd9dc3c469f3942998caed12f1558a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultDuration: 0.4
+  easing:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  stopPrevious: 0
 --- !u!1 &1067088611
 GameObject:
   m_ObjectHideFlags: 0
@@ -8838,6 +8948,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   effectPrefab: {fileID: 123640, guid: 3e200706b87076d45994eb81abac23f9, type: 3}
+  cloneOnZakoHit: {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
+  cloneDestroyDelay: 2
+  emissionFadeDuration: 1
+  emissionRedIntensity: 0.8
   maxDistance: 240.3
   hitLayers:
     serializedVersion: 2
@@ -14599,6 +14713,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 5fe85687a1e41cb48b83d620cd1a9665, type: 2}
+  useExternalTextConfig: 1
+  externalConfigFileName: NetworkConfig.txt
   playerTracker: {fileID: 1108134168}
   sendEnabled: 1
   enableDebugLog: 0
