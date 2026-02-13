@@ -8289,7 +8289,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 119.83
+  far clip plane: 5000
   field of view: 90
   orthographic: 0
   orthographic size: 5
@@ -8696,7 +8696,7 @@ MonoBehaviour:
   emissionFadeDuration: 1
   emissionRedIntensity: 0.8
   sendOSC: {fileID: 1362735538}
-  chubossOscAddress: /cue/call/KillChuboss
+  chubossOscAddress: /cue/call/KillCreature
   isEnabled: 1
 --- !u!114 &1061669037
 MonoBehaviour:
